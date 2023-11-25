@@ -2,22 +2,20 @@ package com.abc.api.message;
 
 import java.io.Serializable;
 
-import jakarta.jms.Message;
-import jakarta.jms.ObjectMessage;
-
 public class EmployeeMessage implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long employeeId;
+    private String employeeName;
     private String action;
 
-    // Constructors, getters, and setters
-
     public EmployeeMessage() {
+        // Default constructor for serialization
     }
 
-    public EmployeeMessage(Long employeeId, String action) {
+    public EmployeeMessage(Long employeeId, String employeeName, String action) {
         this.employeeId = employeeId;
+        this.employeeName = employeeName;
         this.action = action;
     }
 
@@ -27,6 +25,14 @@ public class EmployeeMessage implements Serializable {
 
     public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
     }
 
     public String getAction() {
@@ -41,31 +47,8 @@ public class EmployeeMessage implements Serializable {
     public String toString() {
         return "EmployeeMessage{" +
                 "employeeId=" + employeeId +
+                ", employeeName='" + employeeName + '\'' +
                 ", action='" + action + '\'' +
                 '}';
-    }
-
-    public void receiveMessage(Message message) {
-        try {
-            if (message instanceof ObjectMessage) {
-                ObjectMessage objectMessage = (ObjectMessage) message;
-                Serializable object = objectMessage.getObject();
-
-                if (object instanceof EmployeeMessage) {
-                    EmployeeMessage employeeMessage = (EmployeeMessage) object;
-                    // Process the message as needed
-                    System.out.println("Received Employee Message: " + employeeMessage.toString());
-                } else {
-                    // Handle unexpected message type
-                    System.err.println("Received unexpected message type");
-                }
-            } else {
-                // Handle unexpected message type
-                System.err.println("Received unexpected message type");
-            }
-        } catch (Exception e) {
-            // Handle exceptions
-            e.printStackTrace();
-        }
     }
 }

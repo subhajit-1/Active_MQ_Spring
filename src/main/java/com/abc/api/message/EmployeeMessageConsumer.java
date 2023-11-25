@@ -1,7 +1,6 @@
 package com.abc.api.message;
 
 
-
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
@@ -13,19 +12,16 @@ public class EmployeeMessageConsumer {
      // Implement logic to handle the received message
      System.out.println("Received message: " + message.toString());
 
-     // Example logic: You might want to perform some actions based on the message
+     // For example, you can perform some actions based on the message
      if ("CREATED".equals(message.getAction())) {
-         System.out.println("Employee with ID " + message.getEmployeeId() + " created.");
-         // Perform additional actions for employee creation
+         System.out.println("Employee created. ID: " + message.getEmployeeId());
+         // Add additional logic as needed
      } else if ("UPDATED".equals(message.getAction())) {
-         System.out.println("Employee with ID " + message.getEmployeeId() + " updated.");
-         // Perform additional actions for employee update
+         System.out.println("Employee updated. ID: " + message.getEmployeeId());
+         // Add additional logic as needed
      } else if ("DELETED".equals(message.getAction())) {
-         System.out.println("Employee with ID " + message.getEmployeeId() + " deleted.");
-         // Perform additional actions for employee deletion
-     } else {
-         System.out.println("Unknown action: " + message.getAction());
+         System.out.println("Employee deleted. ID: " + message.getEmployeeId());
+         // Add additional logic as needed
      }
  }
 }
-
