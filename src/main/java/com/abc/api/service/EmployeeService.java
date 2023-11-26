@@ -36,6 +36,7 @@ public class EmployeeService {
         // Send message to ActiveMQ on employee creation
         EmployeeMessage message = new EmployeeMessage();
         message.setEmployeeId(createdEmployee.getId());
+        message.setEmployeeName(createdEmployee.getName());
         message.setAction("CREATED");
         messageProducer.sendMessage(message);
 
@@ -72,7 +73,7 @@ public class EmployeeService {
 
     private void validateEmployee(Employee employee) {
         // Implement validation logic, for example, check if the employee details are valid
-        if (employee.getName() == null || employee.getName().trim().isEmpty()) {
+        if ( employee.getName().isEmpty()) {
             throw new IllegalArgumentException("Employee name cannot be empty");
         }
         // Add more validation as needed

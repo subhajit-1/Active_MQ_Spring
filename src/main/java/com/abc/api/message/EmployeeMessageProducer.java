@@ -13,6 +13,6 @@ public class EmployeeMessageProducer {
     }
 
     public void sendMessage(EmployeeMessage message) {
-        jmsTemplate.convertAndSend("employee.queue", message);
+        jmsTemplate.convertAndSend("employee.queue", message.toString());
     }
 }

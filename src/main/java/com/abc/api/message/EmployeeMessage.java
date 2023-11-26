@@ -1,7 +1,10 @@
 package com.abc.api.message;
 
+import lombok.AllArgsConstructor;
+
 import java.io.Serializable;
 
+@AllArgsConstructor
 public class EmployeeMessage implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -13,11 +16,6 @@ public class EmployeeMessage implements Serializable {
         // Default constructor for serialization
     }
 
-    public EmployeeMessage(Long employeeId, String employeeName, String action) {
-        this.employeeId = employeeId;
-        this.employeeName = employeeName;
-        this.action = action;
-    }
 
     public Long getEmployeeId() {
         return employeeId;
@@ -45,10 +43,10 @@ public class EmployeeMessage implements Serializable {
 
     @Override
     public String toString() {
-        return "EmployeeMessage{" +
-                "employeeId=" + employeeId +
-                ", employeeName='" + employeeName + '\'' +
-                ", action='" + action + '\'' +
-                '}';
+        return "{" +
+                "\"employeeId\": " + employeeId + ", " +
+                "\"employeeName\": \"" + employeeName + "\", " +
+                "\"action\": \"" + action + "\"" +
+                "}";
     }
 }
